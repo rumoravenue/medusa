@@ -132,7 +132,7 @@ class Client {
 
     const domain: "admin" | "store" = path.includes("admin") ? "admin" : "store"
 
-    if (JwtTokenManager.getJwt(domain) || sessionStorage.getItem(`medusa:jwt:${domain}`)) {
+    if (JwtTokenManager.getJwt(domain)) {
       defaultHeaders = {
         ...defaultHeaders,
         Authorization: `Bearer ${JwtTokenManager.getJwt(domain)}`,
