@@ -65,7 +65,7 @@ class AuthResource extends BaseResource {
     return this.client.request("POST", path, payload, {}, customHeaders)
       .then((res) => {
         JwtTokenManager.registerJwt(res.access_token, "store");
-        
+        sessionStorage.setItem("medusa:store:token", res.access_token);
         return res
       });
   }
