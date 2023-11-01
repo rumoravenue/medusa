@@ -10,17 +10,9 @@ class JwtTokenManager {
    */
   public registerJwt(token: string, domain: "admin" | "store") {
     if (domain === "admin") {
-      this.adminJwt = token;
-
-      if (sessionStorage) {
-        sessionStorage.setItem(`medusa:jwt:${domain}`, token);
-      }
+      localStorage.setItem("medusa:admin:token", token);
     } else if (domain === "store") {
-      this.storeJwt = token;
-      console.log('session storage', sessionStorage)
-      if (sessionStorage) {
-        sessionStorage.setItem(`medusa:jwt:${domain}`, token);
-      }
+      localStorage.setItem("medusa:store:token", token);
     } else {
       throw new Error(`'domain' must be wither 'admin' or 'store' received ${domain}`)
     }
@@ -31,18 +23,9 @@ class JwtTokenManager {
    */
   public getJwt(domain: "admin" | "store") {
     if (domain === "admin") {
-      if (sessionStorage.getItem(`medusa:jwt:${domain}`) && !this.adminJwt) {
-        this.adminJwt = sessionStorage.getItem(`medusa:jwt:${domain}`);
-      }
-
-      return this.adminJwt;
+      return localStorage.getItem("medusa:admin:token");
     } else if (domain === "store") {
-      console.log('session', sessionStorage.getItem(`medusa:jwt:${domain}`));
-      if (sessionStorage.getItem(`medusa:jwt:${domain}`) && !this.storeJwt) {
-        this.storeJwt = sessionStorage.getItem(`medusa:jwt:${domain}`);
-      }
-
-      return this.storeJwt;
+      return localStorage.getItem("medusa:store:token");
     } else {
       throw new Error(`'domain' must be wither 'admin' or 'store' received ${domain}`)
     }
