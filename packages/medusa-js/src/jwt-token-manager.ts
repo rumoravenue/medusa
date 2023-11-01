@@ -17,7 +17,7 @@ class JwtTokenManager {
       }
     } else if (domain === "store") {
       this.storeJwt = token;
-
+      console.log('session storage', sessionStorage)
       if (sessionStorage) {
         sessionStorage.setItem(`medusa:jwt:${domain}`, token);
       }
@@ -37,6 +37,7 @@ class JwtTokenManager {
 
       return this.adminJwt;
     } else if (domain === "store") {
+      console.log('session', sessionStorage.getItem(`medusa:jwt:${domain}`));
       if (sessionStorage.getItem(`medusa:jwt:${domain}`) && !this.storeJwt) {
         this.storeJwt = sessionStorage.getItem(`medusa:jwt:${domain}`);
       }
