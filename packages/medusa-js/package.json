@@ -21,7 +21,7 @@
     "prepare": "cross-env NODE_ENV=production yarn run build",
     "test": "jest --passWithNoTests"
   },
-  "author": "Oliver Juhl",
+  "author": "Shrinjay Mukherjee",
   "license": "MIT",
   "engines": {
     "node": ">=12.0.0"
