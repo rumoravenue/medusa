@@ -10,9 +10,13 @@ class JwtTokenManager {
    */
   public registerJwt(token: string, domain: "admin" | "store") {
     if (domain === "admin") {
+      if (typeof window !== undefined) {
       localStorage.setItem("medusa:admin:token", token);
+      }
     } else if (domain === "store") {
-      localStorage.setItem("medusa:store:token", token);
+      if (typeof window !== undefined) {
+        localStorage.setItem("medusa:store:token", token);
+      }
     } else {
       throw new Error(`'domain' must be wither 'admin' or 'store' received ${domain}`)
     }
@@ -23,9 +27,13 @@ class JwtTokenManager {
    */
   public getJwt(domain: "admin" | "store") {
     if (domain === "admin") {
-      return localStorage.getItem("medusa:admin:token");
+      if (typeof window !== undefined) {
+        return localStorage.getItem("medusa:admin:token");
+      }
     } else if (domain === "store") {
-      return localStorage.getItem("medusa:store:token");
+      if (typeof window !== undefined) {
+        return localStorage.getItem("medusa:store:token");
+      }
     } else {
       throw new Error(`'domain' must be wither 'admin' or 'store' received ${domain}`)
     }
