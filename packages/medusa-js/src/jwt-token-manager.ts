@@ -10,11 +10,11 @@ class JwtTokenManager {
    */
   public registerJwt(token: string, domain: "admin" | "store") {
     if (domain === "admin") {
-      if (typeof window !== undefined) {
+      if (typeof window !== 'undefined') {
       localStorage.setItem("medusa:admin:token", token);
       }
     } else if (domain === "store") {
-      if (typeof window !== undefined) {
+      if (typeof window !== 'undefined') {
         localStorage.setItem("medusa:store:token", token);
       }
     } else {
@@ -27,11 +27,11 @@ class JwtTokenManager {
    */
   public getJwt(domain: "admin" | "store") {
     if (domain === "admin") {
-      if (typeof window !== undefined) {
+      if (typeof window !== 'undefined') {
         return localStorage.getItem("medusa:admin:token");
       }
     } else if (domain === "store") {
-      if (typeof window !== undefined) {
+      if (typeof window !== 'undefined') {
         return localStorage.getItem("medusa:store:token");
       }
     } else {
